@@ -1,0 +1,96 @@
+/* Default Settings */
+/* This CSS is for the Base */
+:root {
+  --main-bg-color: black;
+  --sec-bg-color: #404040;
+  --nav-buttons: #101010;
+  --nav-buttons-hover: #202020;
+  --text-color: white;
+  --register-login-box: #101010;
+  --register-login-button: #303030;
+  --box-shadow-color: black;
+}
+* {
+  font-family: cursive;
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  background-color: grey;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+input[type="text"] {
+  padding: 4px 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type="email"] {
+  padding: 4px 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type="password"] {
+  padding: 4px 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+/* Main Title Div */
+#main-content-div {
+  text-align: center;
+  background-color: var(--main-bg-color);
+}
+#main-title-div {
+  display: inline-block;
+  width: 50vw;
+  padding: 6px;
+}
+#main-title {
+  display: inline;
+  color: var(--text-color);
+  font-size: 57px;
+}
+/* Login Div */
+#login-div {
+  display: inline-block;
+  width: 45vw;
+}
+#login {
+  color: var(--text-color);
+  font-size: 32px;
+}
+#login:hover {
+  text-decoration: underline;
+}
+
+#nav-div {
+  text-align: center;
+  background-color: var(--nav-buttons);
+}
+.nav-buttons {
+  background-color: var(--nav-buttons);
+  padding: 5px;
+  border: 0px;
+  border-radius: 2px;
+  outline: none;
+  margin: 0px;
+}
+.nav-buttons a {
+  color: var(--text-color);
+  font-size: 22px;
+  padding: 16px;
+}
+.nav-buttons:hover {
+  background-color: var(--nav-buttons-hover);
+}
+
+#line-div {
+  height: 7px;
+  background-image: linear-gradient(to right, #353535, black);
+}
+#empty-block {
+  height: 40px;
+}

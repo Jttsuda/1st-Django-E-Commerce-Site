@@ -1,0 +1,13 @@
+#index-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#index-main-div {
+  text-align: left;
+  max-width: 1400px;
+  padding: 20px;
+}
+#index-title {
+  text-align: center;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% block head %}
+    {% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+</head>
+<body>
+    <div id="main-content-div">
+        <div id="main-title-div">
+            <h1 id="main-title">{% block title %}PortfolioSite{% endblock %}</h1>
+        </div>
+        <div id="login-div">
+            <h1><a href="{% url 'accounts:login' %}" id="login">Login/Register</a></h1>
+        </div>
+    </div>
+    <nav id="nav-div">
+        <button class="nav-buttons"><a href="/">Home</a></button>
+        <button class="nav-buttons"><a href="">Various</a></button>
+        <button class="nav-buttons"><a href="/games/">Games</a></button>
+        <button class="nav-buttons"><a href="">LeaderBoards</a></button>
+        <button class="nav-buttons"><a href="">Shop</a></button>
+        <button class="nav-buttons"><a href="{% url 'accounts:register' %}">Register</a></button>
+    </nav>
+    <div id="line-div"></div>
+    <div id="empty-block"></div>
+    {% block content %}
+    {% endblock %}
+    <script defer src="{% static '/javascript/main.js' %}"></script>
+</body>
+</html>

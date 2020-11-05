@@ -1,0 +1,39 @@
+/* User Register Box */
+#register-form-box {
+  text-align: center;
+}
+#register-box {
+  text-align: center;
+  background-color: var(--register-login-box);
+  color: var(--text-color);
+  display: inline-block;
+  box-shadow: 4px 4px 7px var(--box-shadow-color);
+  border-radius: 7px;
+  padding: 40px;
+}
+#register-title {
+  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 14px;
+}
+#register-label-box {
+  display: inline-block;
+  width: 80%;
+}
+.user-input {
+  text-align: center;
+}
+.user-input-label {
+  padding: 0px;
+  text-align: left;
+}
+#register-button {
+  background-color: var(--register-login-button);
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: bold;
+  padding: 4px;
+  margin-top: 14px;
+  border-radius: 4px;
+  outline: none;
+}
