@@ -1,0 +1,26 @@
+#shop-nav {
+  text-align: right;
+  background-color: var(--nav-buttons);
+  color: white;
+  transform: translateY(-40px);
+  width: 60vw;
+  border-bottom-right-radius: 10px;
+  padding-right: 40px;
+}
+.shop-nav-buttons {
+  display: inline-block;
+  padding-top: 4px;
+  padding-bottom: 6px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: 22px;
+}
+
+.shop-nav-buttons:hover {
+  text-decoration: underline;
+}
+.clear-background {
+  background-color: var(--bg-color);
+  font-weight: bold;
+  color: black;
+}

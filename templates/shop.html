@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="shop-nav">
+    <a href="#" class="shop-nav-buttons clear-background">All</a>
+    <a href="#" class="shop-nav-buttons">Clothing</a>
+    <a href="#" class="shop-nav-buttons">Stuff</a>
+    <a href="#" class="shop-nav-buttons">Etc</a>
+</div>
+<script defer src="{% static '/javascript/shop.js' %}"></script>
+{% endblock %}

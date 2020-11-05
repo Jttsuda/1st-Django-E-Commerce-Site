@@ -10,7 +10,7 @@ from .forms import UserCreateForm
 from .models import Profile
 
 
-# @unauthenticated_user
+@unauthenticated_user
 def register_view(request):
     form = UserCreateForm()
     if request.method == "POST":
@@ -39,7 +39,7 @@ def register_view(request):
     return render(request, "register.html", context)
 
 
-# @unauthenticated_user
+@unauthenticated_user
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -57,11 +57,11 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return render(request, "home.html")
+    return render(request, "index.html")
 
 
+# @allowed_users(allowed_roles=['admin', 'customer'])
 @login_required(login_url='home-page')
-@allowed_users(allowed_roles=['admin', 'customer'])
 def user_home_view(request):
     return render(request, "user_home.html", {})
 
@@ -70,3 +70,7 @@ def user_home_view(request):
 @admin_only
 def admin_view(request):
     return render(request, "admin.html", {})
+
+
+def shop_view(request):
+    return render(request, "shop.html", {})

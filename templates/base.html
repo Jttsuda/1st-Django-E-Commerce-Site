@@ -12,19 +12,44 @@
 <body>
     <div id="main-content-div">
         <div id="main-title-div">
-            <h1 id="main-title">{% block title %}PortfolioSite{% endblock %}</h1>
+            <h1 id="main-title">
+                {% block title %}
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'accounts:user-home' %}">Welcome, {{request.user}}</a>
+                {% else %}
+                    <a href="/">SiteTitle</a>
+                {% endif %}
+                {% endblock %}
+            </h1>
         </div>
         <div id="login-div">
-            <h1><a href="{% url 'accounts:login' %}" id="login">Login/Register</a></h1>
+            <h1>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'accounts:logout' %}" id="logout">Logout</a>
+                {% else %}
+                <a href="{% url 'accounts:login' %}" id="login">Login/Register</a>
+                {% endif %}
+                <a href=""><img src="/static/images/white_cart.png" alt="" id="shopping-cart"></a>
+            </h1>
         </div>
     </div>
     <nav id="nav-div">
-        <button class="nav-buttons"><a href="/">Home</a></button>
+        <!-- Home Button -->
+        {% if request.user.is_authenticated %}
+            <button class="nav-buttons"><a href="{% url 'accounts:user-home' %}">User Home</a></button>
+        {% else %}
+            <button class="nav-buttons"><a href="/">Home</a></button>
+        {% endif %}
         <button class="nav-buttons"><a href="">Various</a></button>
         <button class="nav-buttons"><a href="/games/">Games</a></button>
         <button class="nav-buttons"><a href="">LeaderBoards</a></button>
-        <button class="nav-buttons"><a href="">Shop</a></button>
-        <button class="nav-buttons"><a href="{% url 'accounts:register' %}">Register</a></button>
+        <button class="nav-buttons"><a href="{% url 'accounts:shop' %}">Shop</a></button>
+        <!-- Register/Cart -->
+        {% if request.user.is_authenticated %}
+            <button class="nav-buttons"><a href="">Cart</a></button>
+        {% else %}
+            <button class="nav-buttons"><a href="{% url 'accounts:register' %}">Register</a></button>
+        {% endif %}
     </nav>
     <div id="line-div"></div>
     <div id="empty-block"></div>
