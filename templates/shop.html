@@ -11,5 +11,17 @@
     <a href="#" class="shop-nav-buttons">Stuff</a>
     <a href="#" class="shop-nav-buttons">Etc</a>
 </div>
+
+{% for product in products  %}
+
+<p style="text-align: center;">
+{{product.id}}
+{{product.name}}
+{{product.description}}
+{{product.price}}
+</p>
+
+{% endfor %}
+
 <script defer src="{% static '/javascript/shop.js' %}"></script>
 {% endblock %}

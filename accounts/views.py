@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from .forms import UserCreateForm
-from .models import Profile
+from .models import *
 
 
 @unauthenticated_user
@@ -17,11 +17,15 @@ def register_view(request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Adding a Profile to a User
+            # Adding a Profile to User
             username = form.cleaned_data.get('username')
             Profile.objects.create(
                 user=user,
                 name=user.username,
+            )
+            # Adding a Shopping Cart to User
+            ShoppingCart.objects.create(
+                user=user,
             )
             # Adding a Group to a User
             group = Group.objects.get(name='customer')
@@ -72,5 +76,18 @@ def admin_view(request):
     return render(request, "admin.html", {})
 
 
+# Shopping
 def shop_view(request):
-    return render(request, "shop.html", {})
+    products = Product.objects.all()
+    context = {
+        'products': products,
+    }
+    return render(request, "shop.html", context)
+
+
+def product_view(request, num):
+    product = Product.objects.get(id=num)
+    context = {
+        "product": product,
+    }
+    return render(request, "product.html", context)

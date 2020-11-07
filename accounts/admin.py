@@ -5,3 +5,5 @@ from .models import *
 # admin.site.register(Model)
 
 admin.site.register(Profile)
+admin.site.register(ShoppingCart)
+admin.site.register(Product)
