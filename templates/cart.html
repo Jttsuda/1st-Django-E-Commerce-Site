@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+
+<div style="text-align: center;">
+    <h1>Shopping Cart</h1>
+{% for item in items %}
+    <h3>{{item.product.id}}</h3>
+    <h3>{{item.product.name}}</h3>
+    <h3>{{item.product.description}}</h3>
+    <h3>{{item.product.price}}</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" name="remove-item" value="{{item.id}}">Remove</button>
+    </form>
+{% endfor %}
+</div>
+
+{% endblock %}

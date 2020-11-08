@@ -1,27 +1,39 @@
 {% extends 'base.html' %}
 {% block head %}
 {% load static %}
-<link rel="stylesheet" href="{% static '/css/shop.css' %}">
+    <link rel="stylesheet" href="{% static '/css/shop.css' %}">
 {% endblock %}
-
 {% block content %}
-<div id="shop-nav">
-    <a href="#" class="shop-nav-buttons clear-background">All</a>
-    <a href="#" class="shop-nav-buttons">Clothing</a>
-    <a href="#" class="shop-nav-buttons">Stuff</a>
-    <a href="#" class="shop-nav-buttons">Etc</a>
-</div>
+
+<!-- Shop Nav -->
+    <div id="shop-nav">
+        <a href="#" class="shop-nav-buttons clear-background">All</a>
+        {% for tag in tags %}
+            <a href="#" class="shop-nav-buttons">{{tag.name}}</a>
+        {% endfor %}
+    </div>
+
+<!-- Products -->
+<div id="products-container">
+    <div id="products-view">
+        <h1 style="width: 100%; text-align: center; color: white; padding: 4px;">Shopping For <span id="search-category">All</span></h1>
 
 {% for product in products  %}
+        <a href="{% url 'accounts:products' product.id %}">
+            <div class="productHover">
+                <div class="products">
+                    <h1>{{product.name}}</h1>
+                    <img src="/static/images/products/{{product.image}}" alt="Uhhh" class="product-image">
+                    <h2>${{product.price}}</h2>
 
-<p style="text-align: center;">
-{{product.id}}
-{{product.name}}
-{{product.description}}
-{{product.price}}
-</p>
 
+                    <span class="product-category">{{product.tags.all}}</span>
+                </div>
+            </div>
+        </a>
 {% endfor %}
+    </div>
+</div>
 
 <script defer src="{% static '/javascript/shop.js' %}"></script>
 {% endblock %}

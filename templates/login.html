@@ -15,4 +15,7 @@
         <p>Don't have an Account? <button id="register-here-button"><a href="{% url 'accounts:register' %}"> Register Here</a></button></p>
     </div>
 </form>
+{% for message in messages %}
+<h1>{{message}}</h1>
+{% endfor %}
 {% endblock %}

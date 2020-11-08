@@ -46,7 +46,7 @@
         <button class="nav-buttons"><a href="{% url 'accounts:shop' %}">Shop</a></button>
         <!-- Register/Cart -->
         {% if request.user.is_authenticated %}
-            <button class="nav-buttons"><a href="">Cart</a></button>
+            <button class="nav-buttons"><a href="{% url 'accounts:cart' %}">Cart</a></button>
         {% else %}
             <button class="nav-buttons"><a href="{% url 'accounts:register' %}">Register</a></button>
         {% endif %}

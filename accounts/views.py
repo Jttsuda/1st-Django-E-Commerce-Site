@@ -22,6 +22,7 @@ def register_view(request):
             Profile.objects.create(
                 user=user,
                 name=user.username,
+                email=user.email,
             )
             # Adding a Shopping Cart to User
             ShoppingCart.objects.create(
@@ -76,18 +77,42 @@ def admin_view(request):
     return render(request, "admin.html", {})
 
 
-# Shopping
+# Shopping-------------
 def shop_view(request):
     products = Product.objects.all()
+    tags = Tag.objects.all()
     context = {
         'products': products,
+        'tags': tags,
     }
     return render(request, "shop.html", context)
 
 
+# Adding Product to Shopping Cart
 def product_view(request, num):
     product = Product.objects.get(id=num)
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            cart = ShoppingCart.objects.get(user=request.user)
+            ListItem.objects.create(
+                user=request.user, shoppingcart=cart, product=product)
+            messages.success(request, "Added to Cart")
+
     context = {
         "product": product,
     }
     return render(request, "product.html", context)
+
+
+# Shopping Cart
+def cart_view(request):
+    items = ListItem.objects.filter(user=request.user)
+    if request.method == "POST":
+        delete_item = request.POST.get("remove-item")
+        ListItem.objects.get(id=delete_item).delete()
+        return HttpResponseRedirect(reverse('accounts:cart'))
+
+    context = {
+        'items': items,
+    }
+    return render(request, "cart.html", context)

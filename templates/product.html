@@ -3,10 +3,19 @@
 {% endblock %}
 
 {% block content %}
+<section style="text-align: center;">
+    {% for message in messages %}
+        <h1>{{message}}</h1>
+    {% endfor %}
     <p>
         {{product.id}}
         {{product.name}}
         {{product.description}}
         {{product.price}}
     </p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit">Add to Cart</button>
+    </form>
+</section>
 {% endblock %}
