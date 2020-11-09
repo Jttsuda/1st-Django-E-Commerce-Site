@@ -46,6 +46,9 @@
   color: black;
   width: 100%;
 }
+#search-category {
+  font-family: "Arial Black", Gadget, sans-serif;
+}
 #products-container {
   display: flex;
   justify-content: center;
@@ -81,8 +84,14 @@
 .product-category {
   display: none;
 }
-#search-category {
-  font-family: "Arial Black", Gadget, sans-serif;
+#no-results {
+  display: none;
+  color: var(--text-color);
+}
+.no-results {
+  display: inline-block;
+  color: var(--text-color);
+  font-size: 32px;
 }
 
 /* Product Reviews */

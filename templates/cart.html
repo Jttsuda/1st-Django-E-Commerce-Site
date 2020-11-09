@@ -18,12 +18,12 @@
                     <img src="/static/images/products/{{item.product.image}}" alt="Uh" class="product-image">
                     <h2 class="product-price">${{item.product.price}}</h2>
                 </div>
-                <!-- Remove Product from List -->
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" class="remove-button" name="remove-item" value="{{item.id}}">Remove from Cart</button>
-                </form>
             </a>
+            <!-- Remove Product from List -->
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="remove-button" name="remove-item" value="{{item.id}}">Remove from Cart</button>
+            </form>
         </div>
         {% endfor %}
     </div>
