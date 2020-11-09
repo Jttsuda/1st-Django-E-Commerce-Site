@@ -1,20 +1,40 @@
 {% extends "base.html" %}
 {% block head %}
+<link rel="stylesheet" href="/static/css/cart.css">
 {% endblock %}
 
 {% block content %}
 
-<div style="text-align: center;">
-    <h1>Shopping Cart</h1>
-{% for item in items %}
-    <h3>{{item.product.id}}</h3>
-    <h3>{{item.product.name}}</h3>
-    <h3>{{item.product.price}}</h3>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <button type="submit" name="remove-item" value="{{item.id}}">Remove</button>
-    </form>
-{% endfor %}
+<!-- Products in Cart -->
+<h1 id="cart-title">Shopping Cart</h1>
+<div id="products-outer-container">
+    <div id="products-container">
+        <!-- Displaying Each Product -->
+        {% for item in items  %}
+        <div class="product-box-margin">
+            <a href="{% url 'accounts:products' item.product.id %}">
+                <div class="products">
+                    <h1>{{item.product.name}}</h1>
+                    <img src="/static/images/products/{{item.product.image}}" alt="Uh" class="product-image">
+                    <h2 class="product-price">${{item.product.price}}</h2>
+                </div>
+                <!-- Remove Product from List -->
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="remove-button" name="remove-item" value="{{item.id}}">Remove from Cart</button>
+                </form>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+
+<!-- Total Price/Checkout -->
+<div id="total-checkout-container">
+    <h2 id="total-price-title">Total: $<span id="total-price">0</span></h2>
+    <button id="checkout-button">Checkout</button>
+</div>
+
+<script defer src="/static/javascript/cart.js"></script>
 
 {% endblock %}

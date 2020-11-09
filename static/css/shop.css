@@ -39,11 +39,13 @@
   border: 0px;
   padding: 6px;
 }
-#product-search-icon:hover {
-  color: #dcdcdc;
-}
-
 /* Products */
+#shopping-for {
+  font-family: "Arial Black", Gadget, sans-serif;
+  text-align: center;
+  color: black;
+  width: 100%;
+}
 #products-container {
   display: flex;
   justify-content: center;
@@ -60,15 +62,6 @@
 .product-margin {
   margin: 20px;
 }
-#shopping-for {
-  font-family: "Arial Black", Gadget, sans-serif;
-  text-align: center;
-  color: black;
-  width: 100%;
-}
-#search-category {
-  font-family: "Arial Black", Gadget, sans-serif;
-}
 .products {
   display: inline-block;
   text-align: center;
@@ -78,10 +71,25 @@
   color: black;
   box-shadow: 2px 2px 7px black;
 }
+.product-image {
+  width: 250px;
+  height: 167px;
+  object-fit: cover;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.product-category {
+  display: none;
+}
+#search-category {
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+
 /* Product Reviews */
 .checked {
   color: orange;
 }
+
 /* Hovering Over Product */
 .products:hover {
   animation: productHover 0.5s;
@@ -95,16 +103,4 @@
     box-shadow: 10px 10px 7px black;
     transform: translate(-2px, -2px);
   }
-}
-
-.product-image {
-  width: 250px;
-  height: 167px;
-  object-fit: cover;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-/* Hiding The product category for Javascript */
-.product-category {
-  display: none;
 }
