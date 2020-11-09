@@ -1,6 +1,6 @@
 {
     const categories = document.querySelectorAll(".shop-nav-buttons");
-    let products = document.querySelectorAll(".products");
+    let products = document.querySelectorAll(".product-margin");
     let productCategory = document.querySelectorAll(".product-category");
 
 
@@ -28,6 +28,7 @@
 
     }
 
+    // Shop Search Box
 
 
 

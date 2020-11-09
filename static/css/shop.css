@@ -1,4 +1,4 @@
-/* Shop Nav */
+/* Shop Navigation Bar */
 #shop-nav {
   text-align: right;
   background-color: var(--nav-buttons);
@@ -6,15 +6,16 @@
   transform: translateY(-40px);
   width: 60vw;
   border-bottom-right-radius: 6px;
-  padding-right: 40px;
+  padding-right: 20px;
 }
 .shop-nav-buttons {
   display: inline-block;
   padding-top: 4px;
-  padding-bottom: 6px;
+  padding-bottom: 11px;
   padding-right: 15px;
   padding-left: 15px;
   font-size: 18px;
+  transform: translateY(2px);
 }
 .shop-nav-buttons:hover {
   text-decoration: underline;
@@ -22,6 +23,24 @@
 .clear-background {
   background-color: var(--bg-color);
   color: black;
+}
+#product-search-box {
+  width: 160px;
+  margin-left: 10px;
+  outline: none;
+}
+/* Search Icon */
+#product-search-icon {
+  cursor: pointer;
+  outline: none;
+  background-color: rgb(0, 0, 0, 0);
+  color: white;
+  font-size: 16px;
+  border: 0px;
+  padding: 6px;
+}
+#product-search-icon:hover {
+  color: #dcdcdc;
 }
 
 /* Products */
@@ -32,20 +51,36 @@
 #products-view {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: var(--nav-buttons);
   border-radius: 10px;
-  max-width: 55vw;
+  max-width: 1250px;
   padding: 20px;
+}
+.product-margin {
+  margin: 20px;
+}
+#shopping-for {
+  font-family: "Arial Black", Gadget, sans-serif;
+  text-align: center;
+  color: black;
+  width: 100%;
+}
+#search-category {
+  font-family: "Arial Black", Gadget, sans-serif;
 }
 .products {
   display: inline-block;
   text-align: center;
   background-color: var(--bg-color);
-  border-radius: 4px;
-  margin: 20px;
+  width: 270px;
+  border-radius: 2px;
   color: black;
   box-shadow: 2px 2px 7px black;
+}
+/* Product Reviews */
+.checked {
+  color: orange;
 }
 /* Hovering Over Product */
 .products:hover {
@@ -64,10 +99,12 @@
 
 .product-image {
   width: 250px;
+  height: 167px;
   object-fit: cover;
   padding-right: 10px;
   padding-left: 10px;
 }
+/* Hiding The product category for Javascript */
 .product-category {
   display: none;
 }

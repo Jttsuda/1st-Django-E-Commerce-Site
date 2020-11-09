@@ -2,6 +2,7 @@
 {% block head %}
 {% load static %}
     <link rel="stylesheet" href="{% static '/css/shop.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 {% block content %}
 
@@ -11,26 +12,35 @@
         {% for tag in tags %}
             <a href="#" class="shop-nav-buttons">{{tag.name}}</a>
         {% endfor %}
+        <input type="text" id="product-search-box" placeholder="Search..">
+        <button type="submit" id="product-search-icon">
+        <i class="fa fa-search"></i>
+        </button>
     </div>
 
 <!-- Products -->
+<h1 id="shopping-for">Results For "<span id="search-category">All</span>"</h1>
 <div id="products-container">
     <div id="products-view">
-        <h1 style="width: 100%; text-align: center; color: white; padding: 4px;">Shopping For <span id="search-category">All</span></h1>
-
+        <!-- Displaying Each Product -->
 {% for product in products  %}
-        <a href="{% url 'accounts:products' product.id %}">
-            <div class="productHover">
-                <div class="products">
-                    <h1>{{product.name}}</h1>
-                    <img src="/static/images/products/{{product.image}}" alt="Uhhh" class="product-image">
-                    <h2>${{product.price}}</h2>
-
-
-                    <span class="product-category">{{product.tags.all}}</span>
+        <div class="product-margin">
+            <a href="{% url 'accounts:products' product.id %}">
+                <div class="productHover">
+                    <div class="products">
+                        <h1>{{product.name}}</h1>
+                        <img src="/static/images/products/{{product.image}}" alt="Uh" class="product-image">
+                        <h2 style="display: inline-block; margin-right: 20px;">${{product.price}}</h2>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="product-category">{{product.tags.all}}</span>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
 {% endfor %}
     </div>
 </div>

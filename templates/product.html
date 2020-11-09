@@ -1,21 +1,30 @@
 {% extends "base.html" %}
 {% block head %}
+<link rel="stylesheet" href="/static/css/product.css">
 {% endblock %}
-
 {% block content %}
-<section style="text-align: center;">
-    {% for message in messages %}
-        <h1>{{message}}</h1>
-    {% endfor %}
-    <p>
-        {{product.id}}
-        {{product.name}}
-        {{product.description}}
-        {{product.price}}
-    </p>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <button type="submit">Add to Cart</button>
-    </form>
+<!-- Product Title -->
+<h1 id="product-title">{{product.name}}</h1>
+<!-- {{product.id}} -->
+<!-- Product Container -->
+<section id="product-container">
+    <div id="product-info">
+        <div id="image-div">
+            <img src="/static/images/products/{{product.image}}" alt="Uh oh">
+            <form action="" method="POST" id="add-to-cart-form">
+                {% csrf_token %}
+                ${{product.price}}
+                <input type="number" name="numberToAdd" value="1" min="1" max="10" id="number-to-add">
+                <button type="submit" id="add-to-cart">Add to Cart</button>
+            </form>
+            {% for message in messages %}
+                <h4 id="added-to-cart-message">{{message}}</h4>
+            {% endfor %}
+        </div>
+        <div id="description-div">
+            {{product.description}}
+        </div>
+    </div>
 </section>
+
 {% endblock %}

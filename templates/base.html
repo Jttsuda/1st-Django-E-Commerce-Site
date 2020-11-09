@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 <body>
+    {% load cart_tags %}
     <div id="main-content-div">
         <div id="main-title-div">
             <h1 id="main-title">
@@ -27,30 +28,48 @@
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'accounts:logout' %}" id="logout">Logout</a>
                 {% else %}
-                <a href="{% url 'accounts:login' %}" id="login">Login/Register</a>
+                <a href="{% url 'accounts:login' %}" id="login">Sign In</a>
                 {% endif %}
-                <a href=""><img src="/static/images/white_cart.png" alt="" id="shopping-cart"></a>
+
+                <!-- Shopping Cart Icon -->
+                <div id="cart-icon-container">
+                    <a href="#">
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'accounts:cart' %}"><div id="amount-of-items">{% number_of_items request%}</div></a>
+                        <a href="{% url 'accounts:cart' %}"><img src="/static/images/white_cart.png" alt="" id="shopping-cart"></a>
+                        {% else %}
+                        <div id="amount-of-items">0</div>
+                        <a href="#"><img src="/static/images/white_cart.png" alt="" id="shopping-cart"></a>
+                        {% endif %}
+                    </a>
+                </div>
+
+
+
             </h1>
         </div>
     </div>
+
+<!-- Navigation Bar -->
     <nav id="nav-div">
-        <!-- Home Button -->
+        <!-- Home/UserHome Button -->
         {% if request.user.is_authenticated %}
-            <button class="nav-buttons"><a href="{% url 'accounts:user-home' %}">User Home</a></button>
+            <a href="{% url 'accounts:user-home' %}" class="nav-buttons">User Home</a>
         {% else %}
-            <button class="nav-buttons"><a href="/">Home</a></button>
+            <a href="/" class="nav-buttons">Home</a>
         {% endif %}
-        <button class="nav-buttons"><a href="">Various</a></button>
-        <button class="nav-buttons"><a href="/games/">Games</a></button>
-        <button class="nav-buttons"><a href="">LeaderBoards</a></button>
-        <button class="nav-buttons"><a href="{% url 'accounts:shop' %}">Shop</a></button>
+            <a href="" class="nav-buttons">Various</a>
+            <a href="/games/" class="nav-buttons">Games</a>
+            <a href="" class="nav-buttons">LeaderBoards</a>
+            <a href="{% url 'accounts:shop' %}" class="nav-buttons">Shop</a>
         <!-- Register/Cart -->
         {% if request.user.is_authenticated %}
-            <button class="nav-buttons"><a href="{% url 'accounts:cart' %}">Cart</a></button>
+            <a href="{% url 'accounts:cart' %}" class="nav-buttons">Checkout</a>
         {% else %}
-            <button class="nav-buttons"><a href="{% url 'accounts:register' %}">Register</a></button>
+            <a href="{% url 'accounts:register' %}" class="nav-buttons">Register</a>
         {% endif %}
     </nav>
+
     <div id="line-div"></div>
     <div id="empty-block"></div>
     {% block content %}

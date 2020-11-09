@@ -9,7 +9,6 @@
 {% for item in items %}
     <h3>{{item.product.id}}</h3>
     <h3>{{item.product.name}}</h3>
-    <h3>{{item.product.description}}</h3>
     <h3>{{item.product.price}}</h3>
     <form action="" method="POST">
         {% csrf_token %}
