@@ -1,2 +1,2 @@
 # Django Project
-Games and registration/login functionality
+Registration/login functionality along with eCommerce and games
