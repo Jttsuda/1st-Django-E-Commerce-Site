@@ -10,22 +10,27 @@
 <div id="products-outer-container">
     <div id="products-container">
         <!-- Displaying Each Product -->
+
+
         {% for item in items  %}
         <div class="product-box-margin">
+            <div class="products">
             <a href="{% url 'accounts:products' item.product.id %}">
-                <div class="products">
-                    <h1>{{item.product.name}}</h1>
-                    <img src="/static/images/products/{{item.product.image}}" alt="Uh" class="product-image">
-                    <h2 class="product-price">${{item.product.price}}</h2>
-                </div>
+                <img src="/static/images/products/{{item.product.image}}" alt="Uh" class="product-image">
+                <h1 class="product-name">{{item.product.name}}</h1>
             </a>
-            <!-- Remove Product from List -->
-            <form action="" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="remove-button" name="remove-item" value="{{item.id}}">Remove from Cart</button>
-            </form>
+                <h2 class="product-price">${{item.product.price}}</h2>
+                <!-- Remove Product from List -->
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="remove-button" name="remove-item" value="{{item.id}}">Remove</button>
+                    <input type="number" class="product-qty" name="numberToAdd" min="1" max="99">
+                </form>
+            </div>
         </div>
         {% endfor %}
+
+
     </div>
 </div>
 
