@@ -88,7 +88,7 @@ def shop_view(request):
     return render(request, "shop.html", context)
 
 
-# Adding Product to Shopping Cart
+# Adding Product to Shopping Cart (Product Page)
 def product_view(request, num):
     product = Product.objects.get(id=num)
     if request.method == "POST":
@@ -103,6 +103,8 @@ def product_view(request, num):
             else:
                 messages.error(
                     request, "Please checkout first before adding more Items.")
+        else:
+            messages.error(request, "Register/Login Before Adding Items")
 
     context = {
         "product": product,

@@ -17,6 +17,7 @@
   max-width: 950px;
 }
 .product-box-margin {
+  display: none;
   margin: 20px;
 }
 .products {
