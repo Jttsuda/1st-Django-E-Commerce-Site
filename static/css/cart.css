@@ -42,6 +42,9 @@
 }
 
 /* Remove Product */
+.remove-and-qty {
+  transform: translateX(15px);
+}
 .remove-button {
   display: inline-block;
   background-color: var(--nav-buttons);
@@ -52,23 +55,29 @@
   margin-top: 6px;
   border: 0px;
   border-radius: 2px;
-}
-.product-category {
-  display: none;
+  transform: translateY(5px);
 }
 
-/* Changing Quantity of Products in Cart */
-/* Padding/Margin inside of Number Textbox */
-input[type="number"] {
-  box-sizing: border-box;
-  padding: 4px 8px;
-  padding-right: 0px;
-  width: 44px;
+/* Changing QTY in Cart */
+.arrows-container {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  height: 65px;
+  width: 25px;
 }
-/* Keeping Arrows Visible for Number input */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  opacity: 1;
+.arrows-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.arrow-up {
+  cursor: pointer;
+}
+.product-qty {
+}
+.arrow-down {
+  cursor: pointer;
 }
 
 /* Total Price/Checkout */

@@ -11,4 +11,6 @@ urlpatterns = [
     path('admin/', admin_view, name="admin"),
     path('shop/<int:num>/', product_view, name="products"),
     path('cart/', cart_view, name="cart"),
+    path('add/', add_view, name="add"),
+    path('remove/', remove_view, name="remove"),
 ]

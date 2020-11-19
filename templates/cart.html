@@ -4,33 +4,52 @@
 {% endblock %}
 
 {% block content %}
-
 <!-- Products in Cart -->
 <h1 id="cart-title">Shopping Cart</h1>
 <div id="products-outer-container">
     <div id="products-container">
         <!-- Displaying Each Product -->
-
-
         {% for item in items  %}
         <div class="product-box-margin">
             <div class="products">
-            <a href="{% url 'accounts:products' item.product.id %}">
-                <img src="/static/images/products/{{item.product.image}}" alt="Uh" class="product-image">
-                <h1 class="product-name">{{item.product.name}}</h1>
-            </a>
+                <a href="{% url 'accounts:products' item.product.id %}">
+                    <img src="/static/images/products/{{item.product.image}}" alt="Uh" class="product-image">
+                    <h1 class="product-name">{{item.product.name}}</h1>
+                </a>
                 <h2 class="product-price">${{item.product.price}}</h2>
                 <!-- Remove Product from List -->
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="remove-button" name="remove-item" value="{{item.id}}">Remove</button>
-                    <input type="number" class="product-qty" name="numberToAdd" min="1" max="99">
+                    <div class="remove-and-qty">
+                        <button type="submit" class="remove-button" name="remove-item" value="{{item.product.id}}">Remove</button>
                 </form>
+                        <!-- Changing QTY of Product -->
+                        <div class="arrows-container">
+                            <div class="arrows-flex">
+                                <!-- Adding 1 -->
+                                <form action="{% url 'accounts:add' %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" style="border:0px; background-color:white;">
+                                        <img src="/static/images/icons/arrowup.png" alt="" class="arrow-up">
+                                    </button>
+                                    <input type="text" name="product-qty" value="{{item.product.id}}" style="display: none;">
+                                </form>
+                                <!-- Current QTY -->
+                                <h4 class="product-qty">0</h4>
+                                <!-- Removing 1 -->
+                                <form action="{% url 'accounts:remove' %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" style="border:0px; background-color:white;">
+                                        <img src="/static/images/icons/arrowdown.png" alt="" class="arrow-down">
+                                    </button>
+                                    <input type="text" name="product-qty" value="{{item.id}}" style="display: none;">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
         {% endfor %}
-
-
     </div>
 </div>
 

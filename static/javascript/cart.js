@@ -17,7 +17,7 @@
             }
         }
         // Displaying Product Quantity
-        document.querySelectorAll(".product-qty")[i].value = count;
+        document.querySelectorAll(".product-qty")[i].innerHTML = count;
         
     }
     

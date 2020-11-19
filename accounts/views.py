@@ -117,11 +117,32 @@ def product_view(request, num):
 def cart_view(request):
     items = ListItem.objects.filter(user=request.user)
     if request.method == "POST":
+        print(request)
         delete_item = request.POST.get("remove-item")
-        ListItem.objects.get(id=delete_item).delete()
+        ListItem.objects.filter(user=request.user).filter(
+            product=delete_item).delete()
         return HttpResponseRedirect(reverse('accounts:cart'))
 
     context = {
         'items': items,
     }
     return render(request, "cart.html", context)
+
+
+# Adding 1 to QTY
+def add_view(request):
+    if request.method == "POST":
+        item_id = request.POST.get('product-qty')
+        cart = ShoppingCart.objects.get(user=request.user)
+        product = Product.objects.get(id=item_id)
+        ListItem.objects.create(
+            user=request.user, shoppingcart=cart, product=product)
+    return HttpResponseRedirect(reverse('accounts:cart'))
+
+
+# Removing 1 from QTY
+def remove_view(request):
+    if request.method == "POST":
+        item_id = request.POST.get('product-qty')
+        ListItem.objects.get(id=item_id).delete()
+    return HttpResponseRedirect(reverse('accounts:cart'))

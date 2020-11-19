@@ -58,9 +58,6 @@
         {% else %}
             <a href="/" class="nav-buttons">Home</a>
         {% endif %}
-            <a href="" class="nav-buttons">Various</a>
-            <a href="/games/" class="nav-buttons">Games</a>
-            <a href="" class="nav-buttons">LeaderBoards</a>
             <a href="{% url 'accounts:shop' %}" class="nav-buttons">Shop</a>
         <!-- Register/Cart -->
         {% if request.user.is_authenticated %}
