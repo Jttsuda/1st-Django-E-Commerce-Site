@@ -7,8 +7,3 @@ from accounts.decorators import unauthenticated_user
 def home_view(request):
     context = {}
     return render(request, "index.html", context)
-
-
-def games_view(request):
-    context = {}
-    return render(request, "games.html", context)

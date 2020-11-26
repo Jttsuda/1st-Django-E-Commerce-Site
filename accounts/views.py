@@ -6,7 +6,7 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .decorators import unauthenticated_user, allowed_users, admin_only
-from .forms import UserCreateForm
+from .forms import *
 from .models import *
 
 
@@ -130,6 +130,7 @@ def cart_view(request):
 
 
 # Adding 1 to QTY
+@login_required(login_url='home-page')
 def add_view(request):
     if request.method == "POST":
         item_id = request.POST.get('product-qty')
@@ -141,8 +142,27 @@ def add_view(request):
 
 
 # Removing 1 from QTY
+@login_required(login_url='home-page')
 def remove_view(request):
     if request.method == "POST":
         item_id = request.POST.get('product-qty')
         ListItem.objects.get(id=item_id).delete()
     return HttpResponseRedirect(reverse('accounts:cart'))
+
+
+# Cart Checkout
+@login_required(login_url='home-page')
+def checkout_view(request):
+    shipping_form = ShippingInfoForm()
+    payment_form = PaymentInfoForm()
+    items = ListItem.objects.filter(user=request.user)
+    total_price = 0
+    for item in items:
+        total_price += item.product.price
+    context = {
+        'items': items,
+        'shipping_form': shipping_form,
+        'payment_form': payment_form,
+        'total_price': total_price,
+    }
+    return render(request, "checkout.html", context)

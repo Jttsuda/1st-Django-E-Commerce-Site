@@ -56,7 +56,7 @@
 <!-- Total Price/Checkout -->
 <div id="total-checkout-container">
     <h2 id="total-price-title">Total: $<span id="total-price">0</span></h2>
-    <button id="checkout-button">Checkout</button>
+    <a href="{% url 'accounts:checkout' %}" id="checkout-button">Checkout</a>
 </div>
 
 <script defer src="/static/javascript/cart.js"></script>

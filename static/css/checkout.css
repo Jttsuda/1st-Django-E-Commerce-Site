@@ -1,0 +1,64 @@
+#checkout-container {
+  margin: auto;
+  width: max-content;
+  transform: translateX(60px);
+}
+#shipping-info-container {
+  display: flex;
+}
+.titles {
+  color: white;
+  text-align: center;
+  border-bottom: 2px solid #303030;
+  padding: 12px 30px;
+  margin-bottom: 10px;
+}
+.labels {
+  color: white;
+  text-align: left;
+  margin-left: 80px;
+}
+.input-field {
+  text-align: center;
+}
+
+/* Product(s) Information Box */
+#products-info {
+  background-color: var(--nav-buttons);
+  width: fit-content;
+  height: fit-content;
+  margin-left: 40px;
+  padding: 12px;
+  border-radius: 7px;
+}
+
+/* Shipping Information Box */
+#shipping-box {
+  background-color: var(--nav-buttons);
+  border-radius: 7px;
+  width: fit-content;
+}
+
+/* Payment Information Box */
+#payment-box {
+  background-color: var(--nav-buttons);
+  border-radius: 7px;
+  margin-top: 10px;
+  width: fit-content;
+}
+
+/* Checkout Buttons */
+.checkout-buttons {
+  text-align: center;
+}
+.checkout-buttons button {
+  background-color: #202020;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px 10px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+  border-radius: 7px;
+}
