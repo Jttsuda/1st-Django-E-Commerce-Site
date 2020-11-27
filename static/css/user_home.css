@@ -1,0 +1,13 @@
+#user-home-container {
+  display: flex;
+  justify-content: center;
+}
+#user-home-title {
+  background-color: var(--nav-buttons);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px 20px;
+}

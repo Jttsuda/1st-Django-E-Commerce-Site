@@ -12,7 +12,7 @@
         {% for item in items  %}
         <div class="product-box-margin">
             <div class="products">
-                <a href="{% url 'accounts:products' item.product.id %}">
+                <a href="{% url 'pages:products' item.product.id %}">
                     <img src="/static/images/products/{{item.product.image}}" alt="Uh" class="product-image">
                     <h1 class="product-name">{{item.product.name}}</h1>
                 </a>

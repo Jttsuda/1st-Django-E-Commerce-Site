@@ -1,33 +1,24 @@
 #checkout-container {
+  color: white;
+  position: relative;
   margin: auto;
   width: max-content;
-  transform: translateX(60px);
-}
-#shipping-info-container {
-  display: flex;
+  text-align: center;
 }
 .titles {
-  color: white;
-  text-align: center;
-  border-bottom: 2px solid #303030;
   padding: 12px 30px;
-  margin-bottom: 10px;
 }
 .labels {
-  color: white;
   text-align: left;
   margin-left: 80px;
-}
-.input-field {
-  text-align: center;
 }
 
 /* Product(s) Information Box */
 #products-info {
   background-color: var(--nav-buttons);
-  width: fit-content;
-  height: fit-content;
-  margin-left: 40px;
+  position: absolute;
+  top: 0px;
+  right: -300px;
   padding: 12px;
   border-radius: 7px;
 }
@@ -36,7 +27,6 @@
 #shipping-box {
   background-color: var(--nav-buttons);
   border-radius: 7px;
-  width: fit-content;
 }
 
 /* Payment Information Box */
@@ -44,14 +34,10 @@
   background-color: var(--nav-buttons);
   border-radius: 7px;
   margin-top: 10px;
-  width: fit-content;
 }
 
 /* Checkout Buttons */
 .checkout-buttons {
-  text-align: center;
-}
-.checkout-buttons button {
   background-color: #202020;
   color: white;
   outline: none;
@@ -61,4 +47,16 @@
   margin-top: 6px;
   margin-bottom: 14px;
   border-radius: 7px;
+}
+
+/* Hiding Shipping/Payment Boxes */
+#shipping-form {
+  /* display: none; */
+  border-top: 2px solid #303030;
+  padding-top: 10px;
+}
+#payment-form {
+  display: none;
+  border-top: 2px solid #303030;
+  padding-top: 10px;
 }

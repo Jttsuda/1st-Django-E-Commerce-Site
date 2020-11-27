@@ -4,69 +4,71 @@
 {% endblock %}
 {% block content %}
 <div id="checkout-container">
-    <div id="shipping-info-container">
     <!-- Shipping Information Form -->
-        <div id="shipping-box">
-            <h1 class="titles">Shipping Information</h1>
+    <div id="shipping-box">
+        <h1 class="titles">Shipping Information</h1>
+        <div id="shipping-form">
             <div>
                 <div class="labels">{{ shipping_form.name.label }}:</div>
-                <div class="input-field">{{ shipping_form.name }}</div>
+                <div>{{ shipping_form.name }}</div>
             </div>
             <div>
                 <div class="labels">{{ shipping_form.city.label }}:</div>
-                <div class="input-field">{{ shipping_form.city }}</div>
+                <div>{{ shipping_form.city }}</div>
             </div>
             <div>
                 <div class="labels">{{ shipping_form.state.label }}:</div>
-                <div class="input-field">{{ shipping_form.state }}</div>
+                <div>{{ shipping_form.state }}</div>
             </div>
             <div>
                 <div class="labels">{{ shipping_form.zip_code.label }}:</div>
-                <div class="input-field">{{ shipping_form.zip_code }}</div>
+                <div>{{ shipping_form.zip_code }}</div>
             </div>
             <div>
                 <div class="labels">{{ shipping_form.address.label }}:</div>
-                <div class="input-field">{{ shipping_form.address }}</div>
+                <div>{{ shipping_form.address }}</div>
             </div>
-            <div class="checkout-buttons">
-                <button>Continue</button>
+            <div>
+                <button class="checkout-buttons">Continue</button>
             </div>
         </div>
-        <!-- Product(s) Information Box -->
-        <div id="products-info">
-            <h2 style="color: white;">Total: <span>${{ total_price }}</span></h2>
-        </div>
+    </div>
+    <!-- Product(s) Information Box -->
+    <div id="products-info">
+        <h2 style="color: white;">Total: <span>${{ total_price }}</span></h2>
     </div>
     <!-- Payment Information Form -->
     <div id="payment-box">
         <h1 class="titles">Payment Information</h1>
-        <div>
-            <div class="labels">{{ payment_form.email.label }}:</div>
-            <div class="input-field">{{ payment_form.email }}</div>
-        </div>
-        <div>
-            <div class="labels">{{ payment_form.phone.label }}:</div>
-            <div class="input-field">{{ payment_form.phone }}</div>
-        </div>
-        <div>
-            <div class="labels">{{ payment_form.name_on_card.label }}:</div>
-            <div class="input-field">{{ payment_form.name_on_card }}</div>
-        </div>
-        <div>
-            <div class="labels">{{ payment_form.card_number.label }}:</div>
-            <div class="input-field">{{ payment_form.card_number }}</div>
-        </div>
-        <div>
-            <div class="labels">{{ payment_form.exp.label }}:</div>
-            <div class="input-field">{{ payment_form.exp }}</div>
-        </div>
-        <div>
-            <div class="labels">{{ payment_form.cvc.label }}:</div>
-            <div class="input-field">{{ payment_form.cvc }}</div>
-        </div>
-        <div class="checkout-buttons">
-            <button>Back</button>
-            <button>Submit</button>
+        <div id="payment-form">
+            <div>
+                <div class="labels">{{ payment_form.email.label }}:</div>
+                <div>{{ payment_form.email }}</div>
+            </div>
+            <div>
+                <div class="labels">{{ payment_form.phone.label }}:</div>
+                <div>{{ payment_form.phone }}</div>
+            </div>
+            <div>
+                <div class="labels">{{ payment_form.name_on_card.label }}:</div>
+                <div>{{ payment_form.name_on_card }}</div>
+            </div>
+            <div>
+                <div class="labels">{{ payment_form.card_number.label }}:</div>
+                <div>{{ payment_form.card_number }}</div>
+            </div>
+            <div>
+                <div class="labels">{{ payment_form.exp.label }}:</div>
+                <div>{{ payment_form.exp }}</div>
+            </div>
+            <div>
+                <div class="labels">{{ payment_form.cvc.label }}:</div>
+                <div>{{ payment_form.cvc }}</div>
+            </div>
+            <div>
+                <button class="checkout-buttons">Back</button>
+                <button class="checkout-buttons">Submit</button>
+            </div>
         </div>
     </div>
 </div>

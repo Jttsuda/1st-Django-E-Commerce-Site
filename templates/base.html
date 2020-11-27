@@ -36,16 +36,13 @@
                     <a href="#">
                         {% if request.user.is_authenticated %}
                         <a href="{% url 'accounts:cart' %}"><div id="amount-of-items">{% number_of_items request%}</div></a>
-                        <a href="{% url 'accounts:cart' %}"><img src="/static/images/white_cart.png" alt="" id="shopping-cart"></a>
+                        <a href="{% url 'accounts:cart' %}"><img src="/static/images/icons/white_cart.png" alt="" id="shopping-cart"></a>
                         {% else %}
                         <div id="amount-of-items">0</div>
-                        <a href="#"><img src="/static/images/white_cart.png" alt="" id="shopping-cart"></a>
+                        <a href="#"><img src="/static/images/icons/white_cart.png" alt="" id="shopping-cart"></a>
                         {% endif %}
                     </a>
                 </div>
-
-
-
             </h1>
         </div>
     </div>
@@ -58,7 +55,7 @@
         {% else %}
             <a href="/" class="nav-buttons">Home</a>
         {% endif %}
-            <a href="{% url 'accounts:shop' %}" class="nav-buttons">Shop</a>
+            <a href="{% url 'pages:shop' %}" class="nav-buttons">Shop</a>
         <!-- Register/Cart -->
         {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:cart' %}" class="nav-buttons">Cart</a>

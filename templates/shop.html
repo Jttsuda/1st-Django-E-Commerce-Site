@@ -25,7 +25,7 @@
         <!-- Displaying Each Product -->
 {% for product in products  %}
         <div class="product-margin">
-            <a href="{% url 'accounts:products' product.id %}">
+            <a href="{% url 'pages:products' product.id %}">
                 <!-- <div class="productHover"> -->
                     <div class="products">
                         <img src="/static/images/products/{{product.image}}" alt="Uh" class="product-image">

@@ -65,51 +65,17 @@ def logout_view(request):
     return render(request, "index.html")
 
 
-# @allowed_users(allowed_roles=['admin', 'customer'])
+# @allowed_users(allowed_roles=['admin', 'customer']) (Unused)
 @login_required(login_url='home-page')
 def user_home_view(request):
     return render(request, "user_home.html", {})
 
 
+# Admin User Interface (Unused)
 @login_required(login_url='/account/login/')
 @admin_only
 def admin_view(request):
     return render(request, "admin.html", {})
-
-
-# Shopping-------------
-def shop_view(request):
-    products = Product.objects.all()
-    tags = Tag.objects.all()
-    context = {
-        'products': products,
-        'tags': tags,
-    }
-    return render(request, "shop.html", context)
-
-
-# Adding Product to Shopping Cart (Product Page)
-def product_view(request, num):
-    product = Product.objects.get(id=num)
-    if request.method == "POST":
-        if request.user.is_authenticated:
-            if ListItem.objects.filter(user=request.user).count() < 40:
-                cart = ShoppingCart.objects.get(user=request.user)
-                add_number = int(request.POST.get("numberToAdd"))
-                for number in range(add_number):
-                    ListItem.objects.create(
-                        user=request.user, shoppingcart=cart, product=product)
-                messages.success(request, "Added to Cart")
-            else:
-                messages.error(
-                    request, "Please checkout first before adding more Items.")
-        else:
-            messages.error(request, "Register/Login Before Adding Items")
-
-    context = {
-        "product": product,
-    }
-    return render(request, "product.html", context)
 
 
 # Shopping Cart
@@ -117,7 +83,6 @@ def product_view(request, num):
 def cart_view(request):
     items = ListItem.objects.filter(user=request.user)
     if request.method == "POST":
-        print(request)
         delete_item = request.POST.get("remove-item")
         ListItem.objects.filter(user=request.user).filter(
             product=delete_item).delete()
@@ -160,7 +125,6 @@ def checkout_view(request):
     for item in items:
         total_price += item.product.price
     context = {
-        'items': items,
         'shipping_form': shipping_form,
         'payment_form': payment_form,
         'total_price': total_price,
