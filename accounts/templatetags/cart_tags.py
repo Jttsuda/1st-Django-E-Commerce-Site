@@ -6,4 +6,5 @@ register = template.Library()
 
 @register.simple_tag
 def number_of_items(request):
-    return ListItem.objects.filter(user=request.user).count()
+    order, created = Order.objects.get_or_create(profile=request.user)
+    return order.get_cart_items

@@ -10,6 +10,13 @@ from .forms import *
 from .models import *
 
 
+# Admin User Interface
+# @login_required(login_url='/account/login/')
+# @admin_only
+# def admin_view(request):
+#     return render(request, "admin.html", {})
+
+
 @unauthenticated_user
 def register_view(request):
     form = UserCreateForm()
@@ -23,10 +30,6 @@ def register_view(request):
                 user=user,
                 name=user.username,
                 email=user.email,
-            )
-            # Adding a Shopping Cart to User
-            ShoppingCart.objects.create(
-                user=user,
             )
             # Adding a Group to a User
             group = Group.objects.get(name='customer')
@@ -65,31 +68,27 @@ def logout_view(request):
     return render(request, "index.html")
 
 
-# @allowed_users(allowed_roles=['admin', 'customer']) (Unused)
+# @allowed_users(allowed_roles=['admin', 'customer']) (Unused Decorator)
 @login_required(login_url='home-page')
 def user_home_view(request):
     return render(request, "user_home.html", {})
 
 
-# Admin User Interface (Unused)
-@login_required(login_url='/account/login/')
-@admin_only
-def admin_view(request):
-    return render(request, "admin.html", {})
-
-
 # Shopping Cart
 @login_required(login_url='home-page')
 def cart_view(request):
-    items = ListItem.objects.filter(user=request.user)
+    cart = Order.objects.get(profile=request.user)
+    user_order = ListItem.objects.filter(order=cart)
+    # Remove Product(s) From Cart
     if request.method == "POST":
         delete_item = request.POST.get("remove-item")
-        ListItem.objects.filter(user=request.user).filter(
+        ListItem.objects.filter(order=cart).filter(
             product=delete_item).delete()
         return HttpResponseRedirect(reverse('accounts:cart'))
 
     context = {
-        'items': items,
+        'order': cart,
+        'items': user_order,
     }
     return render(request, "cart.html", context)
 
@@ -99,10 +98,9 @@ def cart_view(request):
 def add_view(request):
     if request.method == "POST":
         item_id = request.POST.get('product-qty')
-        cart = ShoppingCart.objects.get(user=request.user)
-        product = Product.objects.get(id=item_id)
-        ListItem.objects.create(
-            user=request.user, shoppingcart=cart, product=product)
+        product = ListItem.objects.get(id=item_id)
+        product.quantity += 1
+        product.save()
     return HttpResponseRedirect(reverse('accounts:cart'))
 
 
@@ -111,22 +109,23 @@ def add_view(request):
 def remove_view(request):
     if request.method == "POST":
         item_id = request.POST.get('product-qty')
-        ListItem.objects.get(id=item_id).delete()
+        product = ListItem.objects.get(id=item_id)
+        product.quantity -= 1
+        product.save()
+    if product.quantity <= 0:
+        product.delete()
     return HttpResponseRedirect(reverse('accounts:cart'))
 
 
 # Cart Checkout
 @login_required(login_url='home-page')
 def checkout_view(request):
+    cart = Order.objects.get(profile=request.user)
     shipping_form = ShippingInfoForm()
     payment_form = PaymentInfoForm()
-    items = ListItem.objects.filter(user=request.user)
-    total_price = 0
-    for item in items:
-        total_price += item.product.price
     context = {
+        'cart': cart,
         'shipping_form': shipping_form,
         'payment_form': payment_form,
-        'total_price': total_price,
     }
     return render(request, "checkout.html", context)

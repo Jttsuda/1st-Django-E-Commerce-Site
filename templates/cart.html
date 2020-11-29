@@ -1,64 +1,62 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block head %}
 <link rel="stylesheet" href="/static/css/cart.css">
 {% endblock %}
-
 {% block content %}
-<!-- Products in Cart -->
-<h1 id="cart-title">Shopping Cart</h1>
-<div id="products-outer-container">
-    <div id="products-container">
-        <!-- Displaying Each Product -->
-        {% for item in items  %}
-        <div class="product-box-margin">
-            <div class="products">
-                <a href="{% url 'pages:products' item.product.id %}">
-                    <img src="/static/images/products/{{item.product.image}}" alt="Uh" class="product-image">
-                    <h1 class="product-name">{{item.product.name}}</h1>
-                </a>
-                <h2 class="product-price">${{item.product.price}}</h2>
-                <!-- Remove Product from List -->
-                <form action="" method="POST">
+<h2 id="title">Shopping Cart</h2>
+
+<!-- Shopping Cart Container -->
+<div id="cart-box">
+    <div class="cart-row">
+        <div style="flex:1"></div>
+        <div style="flex:1"><strong>Name</strong></div>
+        <div style="flex:1"><strong>Price/Each</strong></div>
+        <div style="flex:1"><strong>Quantity</strong></div>
+        <div style="flex:1"><strong>Total</strong></div>
+    </div>
+
+<!-- Display Each Product -->
+    {% for item in items %}
+    <div class="cart-row">
+        <div style="flex:1"><img class="product-image" src="/static/images/products/{{item.product.image}}">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button class="remove-btn" name="remove-item" value="{{ item.product.id }}">Remove</button>
+            </form>
+        </div>
+        <div style="flex:1">{{item.product.name}}</div>
+        <div style="flex:1">${{item.product.price|floatformat:2}}</div>
+        <div style="flex:1">
+            <!-- Display/Change Quantity -->
+            <div>
+                <!-- Add 1 -->
+                <form action="{% url 'accounts:add' %}" method="POST">
                     {% csrf_token %}
-                    <div class="remove-and-qty">
-                        <button type="submit" class="remove-button" name="remove-item" value="{{item.product.id}}">Remove</button>
+                    <button type="submit" class="chg-qty-btn" name="product-qty" value="{{ item.id }}">
+                        <img class="chg-quantity" src="/static/images/icons/arrowup.png">
+                    </button>
                 </form>
-                        <!-- Changing QTY of Product -->
-                        <div class="arrows-container">
-                            <div class="arrows-flex">
-                                <!-- Adding 1 -->
-                                <form action="{% url 'accounts:add' %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" style="border:0px; background-color:white;">
-                                        <img src="/static/images/icons/arrowup.png" alt="" class="arrow-up">
-                                    </button>
-                                    <input type="text" name="product-qty" value="{{item.product.id}}" style="display: none;">
-                                </form>
-                                <!-- Current QTY -->
-                                <h4 class="product-qty">0</h4>
-                                <!-- Removing 1 -->
-                                <form action="{% url 'accounts:remove' %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" style="border:0px; background-color:white;">
-                                        <img src="/static/images/icons/arrowdown.png" alt="" class="arrow-down">
-                                    </button>
-                                    <input type="text" name="product-qty" value="{{item.id}}" style="display: none;">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                <p>{{item.quantity}}</p>
+                <!-- Remove 1 -->
+                <form action="{% url 'accounts:remove' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="chg-qty-btn" name="product-qty" value="{{ item.id }}">
+                        <img class="chg-quantity" src="/static/images/icons/arrowdown.png">
+                    </button>
+                </form>
+                <!-- Remove Products -->
             </div>
         </div>
-        {% endfor %}
+        <div style="flex:1">${{item.get_total|floatformat:2}}</div>
     </div>
+    {% endfor %}
 </div>
 
-<!-- Total Price/Checkout -->
-<div id="total-checkout-container">
-    <h2 id="total-price-title">Total: $<span id="total-price">0</span></h2>
-    <a href="{% url 'accounts:checkout' %}" id="checkout-button">Checkout</a>
+<!-- Cart Total Info -->
+<div id="cart-totals">
+    <span>Total Items:<strong> {{order.get_cart_items}}</strong></span>
+    <span>Total Price:<strong> ${{order.get_cart_total|floatformat:2}}</strong></span>
+    <a href="{% url 'accounts:checkout' %}" id="checkout-btn">Checkout</a>
 </div>
 
-<script defer src="/static/javascript/cart.js"></script>
-
-{% endblock %}
+{% endblock content %}

@@ -28,12 +28,12 @@ def product_view(request, num):
     product = Product.objects.get(id=num)
     if request.method == "POST":
         if request.user.is_authenticated:
-            if ListItem.objects.filter(user=request.user).count() < 40:
-                cart = ShoppingCart.objects.get(user=request.user)
+            user_order, created = Order.objects.get_or_create(profile=request.user)
+            if ListItem.objects.filter(order=user_order).count() < 40:
                 add_number = int(request.POST.get("numberToAdd"))
-                for number in range(add_number):
-                    ListItem.objects.create(
-                        user=request.user, shoppingcart=cart, product=product)
+                add_product, created = ListItem.objects.get_or_create(order=user_order, product=product)
+                add_product.quantity = (add_product.quantity + add_number)
+                add_product.save()
                 messages.success(request, "Added to Cart")
             else:
                 messages.error(

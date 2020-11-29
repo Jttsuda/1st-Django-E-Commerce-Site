@@ -9,12 +9,13 @@
   box-shadow: 4px 4px 7px var(--box-shadow-color);
   border-radius: 7px;
   padding: 30px;
-  /* padding-bottom: 20px; */
 }
 #login-title {
   padding-bottom: 8px;
 }
 #login-button {
+  outline: none;
+  cursor: pointer;
   background-color: var(--register-login-button);
   color: var(--text-color);
   font-size: 14px;
@@ -22,12 +23,11 @@
   padding: 4px;
   margin-top: 14px;
   border-radius: 4px;
-  outline: none;
 }
 #register-here-button {
+  outline: none;
   background-color: var(--register-login-button);
   color: var(--text-color);
   padding: 2px;
   border-radius: 4px;
-  outline: none;
 }
