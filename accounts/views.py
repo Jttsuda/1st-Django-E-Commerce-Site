@@ -129,3 +129,11 @@ def checkout_view(request):
         'payment_form': payment_form,
     }
     return render(request, "checkout.html", context)
+
+
+@login_required(login_url='home-page')
+def order_view(request):
+    context = {
+        
+    }
+    return render(request, "order.html", context)

@@ -29,7 +29,7 @@
                 <div>{{ shipping_form.address }}</div>
             </div>
             <div>
-                <button class="checkout-buttons">Continue</button>
+                <button class="checkout-buttons" data-action="continue">Continue</button>
             </div>
         </div>
     </div>
@@ -66,10 +66,11 @@
                 <div>{{ payment_form.cvc }}</div>
             </div>
             <div>
-                <button class="checkout-buttons">Back</button>
-                <button class="checkout-buttons">Submit</button>
+                <button class="checkout-buttons" data-action="back">Back</button>
+                <a href="{% url 'accounts:order' %}"><button class="checkout-buttons" data-action="submit">Place Order</button></a>
             </div>
         </div>
     </div>
 </div>
+<script src="/static/javascript/checkout.js"></script>
 {% endblock %}

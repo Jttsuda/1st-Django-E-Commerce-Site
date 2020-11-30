@@ -1,0 +1,23 @@
+#order-placed-title {
+  width: fit-content;
+  margin: auto;
+  font-family: "Arial Black", Gadget, sans-serif;
+  border-bottom: 4px solid black;
+}
+#btns-container {
+  width: fit-content;
+  margin: auto;
+}
+.order-placed-btns {
+  cursor: pointer;
+  outline: none;
+  background-color: var(--nav-buttons);
+  color: white;
+  margin-top: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 0px;
+}
+.order-placed-btns:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/order.css">
+{% endblock %}
+
+{% block content %}
+<h1 id="order-placed-title">Order Placed!</h1>
+<div id="btns-container">
+    <a href="{% url 'accounts:user-home' %}"><button class="order-placed-btns">User Home</button></a>
+    <a href="{% url 'pages:shop' %}"><button class="order-placed-btns">Continue Shopping</button></a>
+</div>
+{% endblock %}

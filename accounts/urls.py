@@ -12,4 +12,5 @@ urlpatterns = [
     path('add/', add_view, name="add"),
     path('remove/', remove_view, name="remove"),
     path('checkout/', checkout_view, name="checkout"),
+    path('order/', order_view, name="order"),
 ]
