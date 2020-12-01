@@ -8,6 +8,8 @@ from django.urls import reverse
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from .forms import *
 from .models import *
+import datetime
+
 
 
 # Admin User Interface
@@ -17,6 +19,8 @@ from .models import *
 #     return render(request, "admin.html", {})
 
 
+
+# Register
 @unauthenticated_user
 def register_view(request):
     form = UserCreateForm()
@@ -24,17 +28,21 @@ def register_view(request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Adding a Profile to User
+            # Adding Profile and Order to User
             username = form.cleaned_data.get('username')
-            Profile.objects.create(
+            profile = Profile.objects.create(
                 user=user,
                 name=user.username,
                 email=user.email,
             )
-            # Adding a Group to a User
+            Order.objects.create(
+                profile=profile,
+                status="Shopping",
+            )
+            # Adding Group to a User
             group = Group.objects.get(name='customer')
             user.groups.add(group)
-            # Success Message
+            # Success/Error Message
             messages.success(request, "Account created for '" + username + "'")
             return HttpResponseRedirect(reverse('accounts:login'))
         else:
@@ -47,6 +55,8 @@ def register_view(request):
     return render(request, "register.html", context)
 
 
+
+# Login
 @unauthenticated_user
 def login_view(request):
     if request.method == "POST":
@@ -63,21 +73,25 @@ def login_view(request):
     return render(request, "login.html", {})
 
 
+
+# Logout
 def logout_view(request):
     logout(request)
     return render(request, "index.html")
 
 
-# @allowed_users(allowed_roles=['admin', 'customer']) (Unused Decorator)
+
+# User Home
 @login_required(login_url='home-page')
 def user_home_view(request):
     return render(request, "user_home.html", {})
 
 
-# Shopping Cart
+
+# Cart View
 @login_required(login_url='home-page')
 def cart_view(request):
-    cart = Order.objects.get(profile=request.user)
+    cart = Order.objects.get(profile=request.user.profile.id, status="Shopping")
     user_order = ListItem.objects.filter(order=cart)
     # Remove Product(s) From Cart
     if request.method == "POST":
@@ -93,6 +107,7 @@ def cart_view(request):
     return render(request, "cart.html", context)
 
 
+
 # Adding 1 to QTY
 @login_required(login_url='home-page')
 def add_view(request):
@@ -102,6 +117,7 @@ def add_view(request):
         product.quantity += 1
         product.save()
     return HttpResponseRedirect(reverse('accounts:cart'))
+
 
 
 # Removing 1 from QTY
@@ -117,12 +133,14 @@ def remove_view(request):
     return HttpResponseRedirect(reverse('accounts:cart'))
 
 
+
 # Cart Checkout
 @login_required(login_url='home-page')
 def checkout_view(request):
-    cart = Order.objects.get(profile=request.user)
+    cart = Order.objects.get(profile=request.user.profile.id, status="Shopping")
     shipping_form = ShippingInfoForm()
     payment_form = PaymentInfoForm()
+
     context = {
         'cart': cart,
         'shipping_form': shipping_form,
@@ -131,9 +149,34 @@ def checkout_view(request):
     return render(request, "checkout.html", context)
 
 
+
+# Placing an Order
 @login_required(login_url='home-page')
 def order_view(request):
+    profile = Profile.objects.get(user=request.user)
+    order = Order.objects.get(profile=request.user.profile.id, status="Shopping")
+    # No Pending Order Exists
+    if Order.objects.filter(profile=request.user.profile.id, status="Pending").count() == 0:
+        order.status = "Pending"
+        order.transaction_id = datetime.datetime.now().timestamp()
+        order.save()
+        Order.objects.create(profile=profile, status="Shopping")
+    # Pending Order Exists
+    else:
+        existing_order = Order.objects.get(profile=request.user.profile.id, status="Pending")
+        items = order.listitem_set.all()
+        for item in items:
+            # Change QTY of Pending Item(s)
+            if existing_order.listitem_set.filter(product=item.product.id).count() >= 1:
+                chg_qty = existing_order.listitem_set.get(product=item.product.id)
+                chg_qty.quantity += item.quantity
+                chg_qty.save()
+                item.delete()
+            # Add Pending Item(s)
+            else:
+                add_item = ListItem.objects.get(id=item.id)
+                existing_order.listitem_set.add(add_item)
+
     context = {
-        
     }
     return render(request, "order.html", context)

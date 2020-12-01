@@ -7,7 +7,7 @@
     <!-- Shipping Information Form -->
     <div id="shipping-box">
         <h1 class="titles">Shipping Information</h1>
-        <div id="shipping-form">
+        <div id="shipping-form" class="form">
             <div>
                 <div class="labels">{{ shipping_form.name.label }}:</div>
                 <div>{{ shipping_form.name }}</div>
@@ -29,7 +29,7 @@
                 <div>{{ shipping_form.address }}</div>
             </div>
             <div>
-                <button class="checkout-buttons" data-action="continue">Continue</button>
+                <button class="checkout-buttons" data-action="continue" onclick=shrinkExpand()>Continue</button>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
     <!-- Payment Information Form -->
     <div id="payment-box">
         <h1 class="titles">Payment Information</h1>
-        <div id="payment-form">
+        <div id="payment-form" class="form">
             <div>
                 <div class="labels">{{ payment_form.email.label }}:</div>
                 <div>{{ payment_form.email }}</div>
@@ -67,10 +67,11 @@
             </div>
             <div>
                 <button class="checkout-buttons" data-action="back">Back</button>
-                <a href="{% url 'accounts:order' %}"><button class="checkout-buttons" data-action="submit">Place Order</button></a>
+                <a href="{% url 'accounts:order' %}"><button class="checkout-buttons">Place Order</button></a>
             </div>
         </div>
     </div>
 </div>
-<script src="/static/javascript/checkout.js"></script>
+
+<script defer src="/static/javascript/checkout.js"></script>
 {% endblock %}

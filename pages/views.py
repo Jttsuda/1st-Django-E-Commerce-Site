@@ -28,7 +28,7 @@ def product_view(request, num):
     product = Product.objects.get(id=num)
     if request.method == "POST":
         if request.user.is_authenticated:
-            user_order, created = Order.objects.get_or_create(profile=request.user)
+            user_order, created = Order.objects.get_or_create(profile=request.user.profile.id, status="Shopping")
             if ListItem.objects.filter(order=user_order).count() < 40:
                 add_number = int(request.POST.get("numberToAdd"))
                 add_product, created = ListItem.objects.get_or_create(order=user_order, product=product)

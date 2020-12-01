@@ -5,11 +5,11 @@
 
     checkoutBtns.forEach(btn => btn.addEventListener("click", function(e){
         if(e.target.dataset.action === "continue"){
-            shippingBox.style.display = "none";
-            paymentBox.style.display = "block";
+            shippingBox.style.height = "0px";
+            paymentBox.style.height = "480px";
         } else if(e.target.dataset.action === "back"){
-            shippingBox.style.display = "block";
-            paymentBox.style.display = "none";
+            paymentBox.style.height = "0px";
+            shippingBox.style.height = "410px";
         }
     })
     );

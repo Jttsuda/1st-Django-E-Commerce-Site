@@ -50,12 +50,15 @@
 }
 
 /* Hiding Shipping/Payment Boxes */
-#shipping-form {
+.form {
+  transition: height 0.5s ease-in-out;
+  overflow: hidden;
   border-top: 2px solid #303030;
   padding-top: 10px;
 }
+#shipping-form {
+  height: 410px;
+}
 #payment-form {
-  display: none;
-  border-top: 2px solid #303030;
-  padding-top: 10px;
+  height: 0px;
 }
