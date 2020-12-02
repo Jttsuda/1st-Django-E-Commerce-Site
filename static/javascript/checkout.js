@@ -1,5 +1,5 @@
 {
-    let checkoutBtns = document.querySelectorAll(".checkout-buttons");
+    const checkoutBtns = document.querySelectorAll(".checkout-buttons");
     let shippingBox = document.getElementById("shipping-form");
     let paymentBox = document.getElementById("payment-form");
 

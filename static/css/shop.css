@@ -64,11 +64,11 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   border-radius: 6px;
-  max-width: 1250px;
+  max-width: 1200px;
   padding: 20px;
 }
 .product-margin {
-  margin: 20px;
+  margin: 10px;
 }
 .products {
   display: inline-block;

@@ -6,27 +6,27 @@
 <h2 id="title">Shopping Cart</h2>
 
 <!-- Shopping Cart Container -->
-<div id="cart-box">
+<div id="cart-container">
     <div class="cart-row">
-        <div style="flex:1"></div>
-        <div style="flex:1"><strong>Name</strong></div>
-        <div style="flex:1"><strong>Price/Each</strong></div>
-        <div style="flex:1"><strong>Quantity</strong></div>
-        <div style="flex:1"><strong>Total</strong></div>
+        <div class="flex-spacing"></div>
+        <div class="flex-spacing"><strong>Name</strong></div>
+        <div class="flex-spacing"><strong>Price/Each</strong></div>
+        <div class="flex-spacing"><strong>Quantity</strong></div>
+        <div class="flex-spacing"><strong>Total</strong></div>
     </div>
 
 <!-- Display Each Product -->
     {% for item in items %}
     <div class="cart-row">
-        <div style="flex:1"><img class="product-image" src="/static/images/products/{{item.product.image}}">
+        <div class="flex-spacing"><img class="product-image" src="/static/images/products/{{item.product.image}}">
             <form action="" method="POST">
                 {% csrf_token %}
-                <button class="remove-btn" name="remove-item" value="{{ item.product.id }}">Remove</button>
+                <button class="remove-btn btn-hvr" name="remove-item" value="{{ item.product.id }}">Remove</button>
             </form>
         </div>
-        <div style="flex:1">{{item.product.name}}</div>
-        <div style="flex:1">${{item.product.price|floatformat:2}}</div>
-        <div style="flex:1">
+        <div class="flex-spacing">{{item.product.name}}</div>
+        <div class="flex-spacing">${{item.product.price|floatformat:2}}</div>
+        <div class="flex-spacing">
             <!-- Display/Change Quantity -->
             <div>
                 <!-- Add 1 -->
@@ -47,16 +47,16 @@
                 <!-- Remove Products -->
             </div>
         </div>
-        <div style="flex:1">${{item.get_total|floatformat:2}}</div>
+        <div class="flex-spacing">${{item.get_total|floatformat:2}}</div>
     </div>
     {% endfor %}
 </div>
 
 <!-- Cart Total Info -->
-<div id="cart-totals">
+<div id="cart-total">
     <span>Total Items:<strong> {{order.get_cart_items}}</strong></span>
     <span>Total Price:<strong> ${{order.get_cart_total|floatformat:2}}</strong></span>
-    <a href="{% url 'accounts:checkout' %}" id="checkout-btn">Checkout</a>
+    <a href="{% url 'accounts:checkout' %}" class="checkout-btn btn-hvr">Checkout</a>
 </div>
 
 {% endblock content %}

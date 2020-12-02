@@ -1,9 +1,9 @@
 #checkout-container {
-  color: white;
   position: relative;
-  margin: auto;
-  width: max-content;
   text-align: center;
+  width: max-content;
+  margin: auto;
+  color: white;
 }
 .titles {
   padding: 12px 30px;
@@ -15,8 +15,9 @@
 
 /* Product(s) Information Box */
 #products-info {
-  background-color: var(--nav-buttons);
   position: absolute;
+  background-color: var(--nav-buttons);
+  color: white;
   top: 0px;
   right: -300px;
   padding: 12px;
@@ -32,29 +33,26 @@
 /* Payment Information Box */
 #payment-box {
   background-color: var(--nav-buttons);
-  border-radius: 7px;
   margin-top: 10px;
+  border-radius: 7px;
 }
 
 /* Checkout Buttons */
 .checkout-buttons {
-  background-color: #202020;
-  color: white;
   outline: none;
   cursor: pointer;
+  background-color: #202020;
+  color: white;
   font-size: 16px;
   padding: 5px 10px;
   margin-top: 6px;
-  margin-bottom: 14px;
   border-radius: 7px;
 }
 
 /* Hiding Shipping/Payment Boxes */
 .form {
-  transition: height 0.5s ease-in-out;
   overflow: hidden;
-  border-top: 2px solid #303030;
-  padding-top: 10px;
+  transition: all 0.7s;
 }
 #shipping-form {
   height: 410px;

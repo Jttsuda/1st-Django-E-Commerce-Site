@@ -33,6 +33,7 @@ class Order(models.Model):
     def __str__(self):
         return str(self.status)
 
+
     @property
     def get_cart_items(self):
         listitems = self.listitem_set.all()

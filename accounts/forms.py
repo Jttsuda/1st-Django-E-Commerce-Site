@@ -22,5 +22,5 @@ class PaymentInfoForm(forms.Form):
     phone = forms.CharField(label="Phone Number", max_length=15)
     name_on_card = forms.CharField(label="Name On Card", max_length=40)
     card_number = forms.CharField(label="Card Number", max_length=40)
-    exp = forms.CharField(label="Expiration", max_length=40)
+    exp = forms.CharField(label="Expiration (MM/DD/YY)", max_length=40)
     cvc = forms.CharField(label="CVC", max_length=3)

@@ -29,13 +29,13 @@
                 <div>{{ shipping_form.address }}</div>
             </div>
             <div>
-                <button class="checkout-buttons" data-action="continue" onclick=shrinkExpand()>Continue</button>
+                <button class="checkout-buttons" data-action="continue">Continue</button>
             </div>
         </div>
     </div>
     <!-- Product(s) Information Box -->
     <div id="products-info">
-        <h2 style="color: white;">Total: <span>${{ cart.get_cart_total }}</span></h2>
+        <h2>Total: <span>${{ cart.get_cart_total }}</span></h2>
     </div>
     <!-- Payment Information Form -->
     <div id="payment-box">
@@ -73,5 +73,5 @@
     </div>
 </div>
 
-<script defer src="/static/javascript/checkout.js"></script>
+<script src="/static/javascript/checkout.js"></script>
 {% endblock %}
