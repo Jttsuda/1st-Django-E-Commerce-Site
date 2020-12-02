@@ -1,2 +1,9 @@
 # Django Project
-Registration/login functionality with eCommerce
+
+Features:
+-Registration
+-Authorization
+-Login/Logout
+-Shop/Shop Filter
+-Cart Functionality
+-Admin Panel
